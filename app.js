@@ -1,6 +1,7 @@
 const productsDOM = document.querySelector('.products-center');
 const url = './data.json';
 
+// Função Assíncrona para acessar os produtos do arquivo "data.json"
 const fetchProducts = async () => {
   productsDOM.innerHTML = '<div class="loading"></div>';
   try {
@@ -13,15 +14,15 @@ const fetchProducts = async () => {
   }
 };
 
+// Função Síncrona para mostrar os produtos na página
 const displayProducts = (list) => {
   const productList = list
     .map((product) => {
-      const { id } = product;
-      const { name: title, price } = product.fields;
-      const { url: img } = product.fields.image[0];
+      const {id} = product;
+      const {name: title, price} = product.fields;
+      const {url: img} = product.fields.image[0];
       const formatPrice = price / 100;
       
-      // return `<a class="single-product" href="product.html?id=${id}&name=john&age=25">
       return `<a class="single-product" href="product.html?id=${id}">
             <img src="${img}" class="single-product-img img" alt="${title}" />
             <footer>
@@ -37,7 +38,7 @@ const displayProducts = (list) => {
     </div>`;
 };
 
-// Carregamento inicial
+// Função Assíncrona para o carregamento inicial
 const start = async () => {
   const data = await fetchProducts();
   displayProducts(data);

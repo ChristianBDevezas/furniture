@@ -1,6 +1,7 @@
 const productDOM = document.querySelector('.product');
 const url = 'https://course-api.com/javascript-store-single-product';
 
+// Função Assíncrona para acessar os produtos da API
 const fetchProduct = async () => {
   try {
     productDOM.innerHTML = '<h4 class="product-loading">Loading... </h4>';
@@ -17,6 +18,7 @@ const fetchProduct = async () => {
   }
 };
 
+// Função Síncrona para mostrar o produto selecionado
 const displayProduct = (product) => {
   // company, colors, description, name:title, price, image(url:img)
   const {company, colors, description, name: title, price, image} = product.fields;
@@ -41,6 +43,7 @@ const displayProduct = (product) => {
       </div>`;
 };
 
+// Função Assíncrona para o carregamento inicial
 const start = async () => {
   const data = await fetchProduct();
   displayProduct(data);
